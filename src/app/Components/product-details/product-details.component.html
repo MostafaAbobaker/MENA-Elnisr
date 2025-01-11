@@ -52,7 +52,7 @@
 
           </div>
           <div class="action border-bottom pb-3 mb-3">
-            <button class="btn btn-warning me-2 px-4 w-100 fw-bold h5"  ><i class="fa-solid fa-cart-arrow-down me-1"></i> إشترى الان</button>
+            <a class="btn btn-lg btn-warning me-2 px-4 w-100 fw-bold h5"  ><i class="fa-solid fa-cart-arrow-down me-1"></i> إشترى الان</a>
           </div>
           <p>
             <span class="w-25 d-inline-block">Brand :</span>
@@ -73,7 +73,7 @@
   </div>
   <app-info-shipping></app-info-shipping>
   <section class="more details py-5">
-    <h3 class="text-warning fw-bold text-center d-table border-bottom border-2 mx-auto pb-2 mb-5 border-warning px-3">مميزات المنتج</h3>
+    <h2 class="display-5 text-warning fw-bold text-center d-table border-bottom border-2 mx-auto pb-2 mb-5 border-warning px-3">مميزات المنتج</h2>
     <div class="container">
       <div class="row g-5 align-items-center">
         <div class="col-lg-4">
@@ -106,4 +106,44 @@
       </div>
     </div>
   </section>
+  <app-testimonial></app-testimonial>
+  <app-more-products></app-more-products>
 </section>
+
+<div class="footer-card p-3 px-5 position-fixed bottom-0 w-100 shadow-lg z-3 bg-white">
+  <div class="conatainer-fluid">
+    <div class="row">
+      <div class="col-lg-6">  <a class="btn btn-lg btn-warning  px-4 w-100 fw-bold h5 fa-beat-fade mb-0" style="--fa-animation-duration: 3s; --fa-beat-scale: 1.07;" ><i class="fa-solid fa-cart-arrow-down me-1"></i> إشترى الان</a>
+      </div>
+      <div class="col-lg-6">
+        <div class="text-offier rounded-pill bg-danger text-white d-flex mx-4 p-2 px-4 justify-content-between align-items-center">
+          <div class="icon fw-bold"><i class="fa-solid fa-fire fa-bounce me-2"></i>ينتهي العرض في
+
+          </div>
+          <div class="time-card d-flex align-items-center">
+            <div class="d-flex align-items-center me-2">
+              <span class="time-number fw-bold fs-4 me-1">{{ seconds }}</span>
+              <span class="time-unit fw-bold">ثانية</span>
+            </div>
+            <div class="d-flex align-items-center me-2">
+              <span class="time-number fw-bold fs-4 me-1">{{ minutes }}</span>
+              <span class="time-unit fw-bold">دقيقة</span>
+            </div>
+            <div class="d-flex align-items-center me-2">
+              <span class="time-number fw-bold fs-4 me-1">8</span>
+              <span class="time-unit fw-bold">ساعه</span>
+            </div>
+            <div class="d-flex align-items-center me-2">
+              <span class="time-number fw-bold fs-4 me-1">0</span>
+              <span class="time-unit fw-bold">يوم</span>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

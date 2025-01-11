@@ -22,6 +22,7 @@ import { EGPPipe } from './Pipes/egp.pipe';
 import { SliceTextPipe } from './Pipes/slice-text.pipe';
 import { InfoShippingComponent } from './Components/info-shipping/info-shipping.component';
 import { TestimonialComponent } from './Components/testimonial/testimonial.component';
+import { MoreProductsComponent } from './Components/more-products/more-products.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TestimonialComponent } from './Components/testimonial/testimonial.compo
     EGPPipe,
     SliceTextPipe,
     InfoShippingComponent,
-    TestimonialComponent
+    TestimonialComponent,
+    MoreProductsComponent
   ],
   imports: [
     BrowserModule,
