@@ -6,8 +6,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-  // email:string = 'elmestawrd.mena.elnisr@gmail.com'
-  email:string = ''
-year= new Date();
+  emailText:string = 'elmestawrd.mena.elnisr@gmail.com'
+  year= new Date();
 
 }
