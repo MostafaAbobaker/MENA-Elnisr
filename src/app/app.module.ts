@@ -23,6 +23,8 @@ import { SliceTextPipe } from './Pipes/slice-text.pipe';
 import { InfoShippingComponent } from './Components/info-shipping/info-shipping.component';
 import { TestimonialComponent } from './Components/testimonial/testimonial.component';
 import { MoreProductsComponent } from './Components/more-products/more-products.component';
+import { ShippingDetailsComponent } from './Components/shipping-details/shipping-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { MoreProductsComponent } from './Components/more-products/more-products.
     SliceTextPipe,
     InfoShippingComponent,
     TestimonialComponent,
-    MoreProductsComponent
+    MoreProductsComponent,
+    ShippingDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { MoreProductsComponent } from './Components/more-products/more-products.
     RouterModule,
     BrowserAnimationsModule,
     CarouselModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

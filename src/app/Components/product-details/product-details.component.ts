@@ -41,18 +41,21 @@ export class ProductDetailsComponent {
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((params) => {
       this.productUrl = params.get('id');
+      if (this.productUrl != null) {
+        this._productsService.getProductDetails(this.productUrl).subscribe({
+          next: (result) => {
+            this.productDetails = result.data;
+            console.log(result);
+          },
+          error: (err) => {
+            this.errorMassage = err.error.message;
+          },
+        });
+      }
     });
-    if (this.productUrl != null) {
-      this._productsService.getProductDetails(this.productUrl).subscribe({
-        next: (result) => {
-          this.productDetails = result.data;
-          console.log(result);
-        },
-        error: (err) => {
-          this.errorMassage = err.error.message;
-        },
-      });
-    }
+
+
+
     this.remainingTime = 3600; // Start the countdown
     setInterval(() => {
       if (this.remainingTime > 0) {

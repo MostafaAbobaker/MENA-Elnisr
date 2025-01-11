@@ -1,0 +1,95 @@
+<section class="shipping-details py-5 my-5">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-lg-6 border-end">
+        <div class="image mb-3">
+          <img [src]="productDetails?.imageCover" alt="productDetails.title" class="w-100  object-fit-contain" height="200">
+        </div>
+        <h4 class="text-center">{{productDetails?.title}}</h4>
+        <div class="price text-center border-bottom border-2 mb-4 pb-3">
+          <span class="h3">بسعر <span class="text-danger">{{ productDetails?.price| number:'1.0-0'}}</span>  جنية    بدلاً من <span class="text-danger"><del>{{ productDetails?.price! + ((productDetails?.price! * 20)/100) | number:'1.0-0' }}</del></span> جنية</span>
+        </div>
+        <h3 class="text-center fw-bold"> 💡 ضمان رضاك التام:</h3>
+        <p class="fw-bold text-center">✔️ حضرتك مش بتستلم إلا بعد ما تعاين المنتج بنفسك ☺️.</p>
+        <p class="fw-bold text-center">✔️ لو المنتج معجبكش، ببساطة متستلموش بدون دفع اي مصاريف ❤️.
+        </p>
+        <p class="fw-bold text-center">📌 كواليتي عالية جداً وسعر استثنائي مش هتلاقيه عند أي حد!
+
+        </p>
+        <p class="fw-bold text-center">🛒 اطلبيها الآن وعيشي تجربة مميزة تجمع بين الراحة والعملية!
+
+        </p>
+        <h4 class="fw-bold text-center">الشحن مجاني لجميع المحافظات لفترة محدودة 🚛👌
+        </h4>
+      </div>
+      <div class="col-lg-6">
+        <h4 class="  fw-bold text-center d-table border-bottom border-2 mx-auto pb-2 mb-5  px-3"> يرجى ادخال معلوماتك لإكمال الطلب
+
+        </h4>
+        <form (ngSubmit)="shippingForm()" [formGroup]="shippingDetails"  class="px-5">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="name" id="floatingInput" placeholder="">
+            <label for="floatingInput" class="fw-bold"> الاسم بالكامل
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="phone" id="floatingInput" placeholder="">
+            <label for="floatingInput" class="fw-bold">  رقم الهاتف (اساسي)
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="phoneContact" id="floatingInput" placeholder="">
+            <label for="floatingInput" class="fw-bold">    رقم واتساب (لتاكيد الاوردر) او رقم هاتف بديل
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <select class="form-select" id="floatingSelect" formControlName="conservatism" aria-label="Floating label select example">
+              <option selected>إختار المحافظة   </option>
+              <option value="الإسكندرية">الإسكندرية</option>
+              <option value="الإسماعيلية">الإسماعيلية</option>
+              <option value="أسوان	">أسوان	</option>
+              <option value="	أسيوط">أسيوط	</option>
+              <option value="	الأقصر">	الأقصر</option>
+              <option value="البحر الأحمر	">البحر الأحمر	</option>
+              <option value="البحيرة	">البحيرة	</option>
+              <option value="	بني سويف	">	بني سويف	</option>
+              <option value="بورسعيد	">بورسعيد	</option>
+              <option value="	جنوب سيناء">جنوب سيناء	</option>
+              <option value="الجيزة	">الجيزة	</option>
+              <option value="	الدقهلية">	الدقهلية</option>
+              <option value="	دمياط">دمياط	</option>
+              <option value="سوهاج	">	سوهاج</option>
+              <option value="	السويس">	السويس</option>
+              <option value="	الشرقية">	الشرقية</option>
+              <option value="شمال سيناء	">شمال سيناء	</option>
+              <option value="	الغربية">	الغربية</option>
+              <option value="	الفيوم">الفيوم	</option>
+              <option value="	القاهرة">	القاهرة</option>
+              <option value="	القليوبية">القليوبية	</option>
+              <option value="	قنا">	قنا</option>
+              <option value="	كفر الشيخ	">كفر الشيخ		</option>
+              <option value="	مطروح">مطروح	</option>
+              <option value="المنوفية	">المنوفية	</option>
+              <option value="المنيا	">المنيا	</option>
+              <option value="	الوادي الجديد">	الوادي الجديد</option>
+
+            </select>
+                        <label for="floatingInput" class="fw-bold">    المحافظة
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control"  placeholder="" formControlName="address" id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="floatingTextarea2">العنوان بالتفصيل
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="" formControlName="comments" id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="floatingTextarea2"> ملاحظات
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg fw-bold btn-warning bg-gradient rounded-pill" [disabled]="shippingDetails.invalid">اضغط هنا للشراء</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

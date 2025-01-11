@@ -52,7 +52,7 @@
 
           </div>
           <div class="action border-bottom pb-3 mb-3">
-            <a class="btn btn-lg btn-warning me-2 px-4 w-100 fw-bold h5"  ><i class="fa-solid fa-cart-arrow-down me-1"></i> إشترى الان</a>
+            <a [routerLink]="['/shipping-details', productDetails?._id]" class="btn btn-lg btn-warning me-2 px-4 w-100 fw-bold h5"  ><i class="fa-solid fa-cart-arrow-down me-1"></i> إشترى الان</a>
           </div>
           <p>
             <span class="w-25 d-inline-block">Brand :</span>
@@ -113,7 +113,7 @@
 <div class="footer-card p-3 px-5 position-fixed bottom-0 w-100 shadow-lg z-3 bg-white">
   <div class="conatainer-fluid">
     <div class="row">
-      <div class="col-lg-6">  <a class="btn btn-lg btn-warning  px-4 w-100 fw-bold h5 fa-beat-fade mb-0" style="--fa-animation-duration: 3s; --fa-beat-scale: 1.07;" ><i class="fa-solid fa-cart-arrow-down me-1"></i> إشترى الان</a>
+      <div class="col-lg-6">  <a [routerLink]="['/shipping-details', productDetails?._id]" class="btn btn-lg bg-warning bg-gradient  px-4 w-100 fw-bold h5 fa-beat-fade mb-0" style="--fa-animation-duration: 3s; --fa-beat-scale: 1.07;" ><i class="fa-solid fa-cart-arrow-down me-1"></i> إشترى الان</a>
       </div>
       <div class="col-lg-6">
         <div class="text-offier rounded-pill bg-danger text-white d-flex mx-4 p-2 px-4 justify-content-between align-items-center">
