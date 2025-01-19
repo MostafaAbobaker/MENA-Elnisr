@@ -48,6 +48,14 @@ customOptions: OwlOptions = {
       error:(err)=>{ console.log(err);
       },
     });
+
+    this._ProductsService.getGovernorates().subscribe({
+      next:(response)=>{
+        console.log(response);
+      },
+      error:(err)=>{ console.log(err);
+      },
+    });
   }
 
 

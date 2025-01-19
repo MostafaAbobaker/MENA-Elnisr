@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -19,4 +19,9 @@ export class ProductsService {
   getProductDetails(id:string):Observable<any> {
     return this._http.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
   }
+
+  getGovernorates(): Observable<any> {
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
+       return this._http.get('http://elnisr.webxy.net/api/Governorates/GetAll', { headers: headers });
+    }
 }

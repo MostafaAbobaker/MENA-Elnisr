@@ -10,6 +10,11 @@ const routes: Routes = [
   { path: '',redirectTo:'home', pathMatch: 'full' },
   {path: 'home', component: HomeComponent},
   { path: 'Products', component:ProductsComponent},
+  { path: 'products-management',
+    loadChildren:()=>(import('./products-management/products-management.module').then(m => m.ProductsManagementModule))
+
+  },
+
   { path: 'Product/:id', component:ProductDetailsComponent},
   { path: 'shipping-details/:id', component:ShippingDetailsComponent},
   { path: '**', component:NotFound404Component}

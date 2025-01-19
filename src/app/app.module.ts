@@ -25,6 +25,7 @@ import { TestimonialComponent } from './Components/testimonial/testimonial.compo
 import { MoreProductsComponent } from './Components/more-products/more-products.component';
 import { ShippingDetailsComponent } from './Components/shipping-details/shipping-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     CarouselModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

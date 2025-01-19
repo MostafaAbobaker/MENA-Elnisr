@@ -1,0 +1,97 @@
+<section class="governorates-page  py-5">
+  <div class="container">
+    <div class="title d-flex justify-content-between pb-2 border-bottom mb-4">
+      <h2 class="fw-bold  mb-0">المحافظات</h2>
+      <button class="btn btn-outline-warning px-4 text-dark ms-auto" [class]="isAdd? ' btn-warning':' btn-outline-warning'" (click)="isAdd = !isAdd">
+        <span *ngIf="!isAdd">إضافة</span>
+        <span *ngIf="isAdd">إخفاء الإضافة</span>
+      </button>
+    </div>
+    <div class="add-item bg-light p-2 mb-3 rounded-2" *ngIf="isAdd">
+      <form class="form" (ngSubmit)="addGovernorates()" [formGroup]="formGovernorates">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="">
+              <label for="nameAr" class="form-label">الاسم العربى</label>
+              <input type="text" class="form-control" formControlName="nameAr" id="nameAr" placeholder="الاسم العربى">
+              <div class="text-danger"
+                *ngIf="formGovernorates.get('nameAr')?.invalid && formGovernorates.get('nameAr')?.touched">
+                  <div *ngIf="formGovernorates.get('nameAr')?.getError('required')">هذا الحق اجبارى</div>
+                  <div *ngIf="formGovernorates.get('nameAr')?.getError('pattern')"> من فضلك التزم كتابه حروف عربية</div>
+                </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="">
+              <label for="nameEn" class="form-label">الاسم الانجليزى</label>
+              <input type="text" class="form-control" id="nameEn" formControlName="nameEn" placeholder="الاسم الانجليزى">
+              <div class="text-danger"
+              *ngIf="formGovernorates.get('nameEn')?.invalid && formGovernorates.get('nameEn')?.touched">
+                <div *ngIf="formGovernorates.get('nameEn')?.getError('required')">هذا الحق اجبارى</div>
+                <div *ngIf="formGovernorates.get('nameEn')?.getError('pattern')"> من فضلك التزم كتابه حروف الانجليزى</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="">
+              <label for="Fees" class="form-label"> قيمة التوصيل</label>
+              <input type="number" class="form-control text-start" id="Fees" formControlName="deliverdFees">
+
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class=" d-flex align-items-center">
+                <div class="form-check">
+                  <div class="mt-2">&nbsp;</div>
+                  <input class="form-check-input" type="checkbox" formControlName="isFreeDelivery" value="" id="free">
+                  <label class="form-check-label" for="free">
+                    قيمة التوصيل مجانى
+                  </label>
+                </div>
+                <button class="btn btn-success ms-auto btn-sm px-4 mt-4 d-inline-block" *ngIf="!buttonEdit">إضافة</button>
+                <button class="btn btn-primary ms-auto btn-sm px-4 mt-4 d-inline-block" *ngIf="buttonEdit">تعديل</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+    <div class="row g-3">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6 mx-auto">
+        <div class="input-group mb-3">
+          <input type="search" class="form-control" placeholder="بحث " [(ngModel)]="textSearch">
+          <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
+        </div>
+      </div>
+      <div class="col-lg-3"></div>
+      <div class="col-lg-3 col-md-6" *ngFor="let gov of governorates | filter: textSearch">
+        <div class="card flex-row align-items-center">
+          <div class="icon" >{{gov.nameAr.charAt(0)}}</div>
+          <div class="card-body">
+            <h4 class="mb-0">{{gov.nameAr}}</h4>
+            <ng-container *ngIf="gov.isFreeDelivery ; else deliverd">
+              <p> قيمة التوصيل :
+                <span class="fw-bold fs-5">مجاني</span>
+                </p>
+
+            </ng-container>
+            <ng-template #deliverd>
+              <p> قيمة التوصيل : <span class="fw-bold fs-4">{{gov.deliverdFees}}</span> </p>
+
+            </ng-template>
+
+
+          </div>
+          <div class="button-action  ">
+            <button class="btn btn-outline-primary btn-sm" (click)="editGovernorates(gov)"><i class="fa-solid fa-pencil"></i> </button>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteGovernorates(gov.id)"> <i class="fa-solid fa-trash-can"></i></button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<p-toast ></p-toast>
