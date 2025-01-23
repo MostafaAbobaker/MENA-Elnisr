@@ -19,24 +19,18 @@ export class CategoryService {
       {
         nameAr:category.nameAr,
         nameEn:category.nameEn,
-        descEn:category.descEn,
-        descAr:category.descAr,
-        categoryImage: category.categoryImage,
-        imageForm: fileName,
+        file: fileName,
       }
     )
   }
 
-  updateCategory(id :number,category:ICategory ) : Observable<any> {
+  updateCategory(id :number,category:ICategory , fileName:string ) : Observable<any> {
       return this._http.put('http://elnisr.webxy.net/api/Category/UpdateCategory',
         {
           id: id,
           nameAr:category.nameAr,
           nameEn:category.nameEn,
-          descEn:category.descEn,
-          descAr:category.descAr,
-          categoryImage: category.categoryImage,
-          imageForm: category.imageForm,
+          file: fileName,
         })
     }
 

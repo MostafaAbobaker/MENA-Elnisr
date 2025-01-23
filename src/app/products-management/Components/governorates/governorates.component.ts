@@ -73,7 +73,6 @@ export class GovernoratesComponent implements OnInit {
               console.log(response);
               this.showGovernorates()
               this.messageService.add({ severity: 'success', summary: 'تنبيه', detail: 'تم الاضافة بنجاح   ' });
-
             },
             error: (err) => {
               console.log(err);

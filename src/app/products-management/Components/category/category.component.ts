@@ -9,10 +9,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit{
+
   categories:ICategory[] = [];
+
   isAdd:boolean = false
   buttonEdit:boolean = false
   fileImage:string =''
+  selectedCategory: any = null; // Add this line
+
+
+
   formCategory:FormGroup = new FormGroup({
     nameAr: new FormControl(null, [Validators.required, Validators.pattern(/^[\u0600-\u06FF\s]+$/)]),
     nameEn: new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
@@ -45,20 +51,76 @@ export class CategoryComponent implements OnInit{
 
   addCategory(){
     console.log(this.formCategory);
+    let nameEn: string = this.formCategory.value.nameEn.toLocaleLowerCase().trim()
+    let categoryNameEn = this.categories.some(Category => Category.nameEn.toLocaleLowerCase() === nameEn.toLocaleLowerCase())
+
     if(this.formCategory.valid) {
-      this._categoryService.addCategories(this.formCategory.value , this.fileImage).subscribe({
-        next: (response) => {
-          console.log(response);
-          this.showCategory();
-          this.fileImage= '';
-          this.formCategory.reset();
-       },
-        error: (error) => {
-          console.log('Error =>', error);
-       }
-      })
+      if(this.selectedCategory){
+        this._categoryService.updateCategory(this.selectedCategory.id, this.formCategory.value,this.fileImage).subscribe({
+          next: (response) => {
+            console.log(response);
+            this.showCategory();
+            this.isAdd = false;
+            this.buttonEdit = false;
+            this.formCategory.reset();
+            this.selectedCategory = null;
+            // this.messageService.add({ severity: 'success', summary: 'تنبيه', detail: 'تم الاضافة بنجاح   ' });
+
+          },
+          error: (error) => {
+            console.log('Error =>', error);
+            // this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: error.message });
+
+          }
+        })
+      } else {
+        if(!categoryNameEn) {
+          this._categoryService.addCategories(this.formCategory.value , this.fileImage).subscribe({
+            next: (response) => {
+              console.log(response);
+              this.showCategory();
+              this.fileImage= '';
+              this.formCategory.reset();
+              // this.messageService.add({ severity: 'success', summary: 'تنبيه', detail: 'تم الاضافة بنجاح   ' });
+
+          },
+            error: (error) => {
+              console.log('Error =>', error);
+              // this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: error.message });
+
+          }
+          })
+        }
+      }
+
 
     }
 
   }
+
+    editCategory(Category: ICategory): void {
+     /*  this.isAdd = true;
+      this.buttonEdit = true;
+      this.selectedCategory = Category;
+      this.formCategory.patchValue(Category)
+      window.scrollTo(0, 0); */
+
+    }
+
+    deleteCategory(id: number) {
+      /* this._categoryService.deleteCategory(id).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.showCategory();
+          this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: 'تم الحذف   ' });
+
+        },
+        error: (err) => {
+          console.log(err);
+          this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: err.message });
+
+        },
+      }); */
+    }
+
 }

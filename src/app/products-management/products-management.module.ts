@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { FilterPipe } from './Pipes/filter.pipe';
+import { ViewListProductsComponent } from './Components/view-list-products/view-list-products.component';
+import { TableModule } from 'primeng/table';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { FilterPipe } from './Pipes/filter.pipe';
     ProductsManagementComponent,
     CategoryComponent,
     GovernoratesComponent,
-    FilterPipe
+    FilterPipe,
+    ViewListProductsComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +32,8 @@ import { FilterPipe } from './Pipes/filter.pipe';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    TableModule
   ]
 })
 export class ProductsManagementModule { }
