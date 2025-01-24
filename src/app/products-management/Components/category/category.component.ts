@@ -28,7 +28,9 @@ export class CategoryComponent implements OnInit{
     imageForm: new FormControl(null, [Validators.required])
   })
 
-  constructor(private _categoryService:CategoryService ){}
+  constructor(private _categoryService:CategoryService
+    // private messageService: MessageService  // Add this line if you want to use MessageService Toast
+   ){}
   ngOnInit(): void {
     this.showCategory()
   }
@@ -99,28 +101,28 @@ export class CategoryComponent implements OnInit{
   }
 
     editCategory(Category: ICategory): void {
-     /*  this.isAdd = true;
+      this.isAdd = true;
       this.buttonEdit = true;
       this.selectedCategory = Category;
       this.formCategory.patchValue(Category)
-      window.scrollTo(0, 0); */
+      window.scrollTo(0, 0);
 
     }
 
     deleteCategory(id: number) {
-      /* this._categoryService.deleteCategory(id).subscribe({
+      this._categoryService.deleteCategory(id).subscribe({
         next: (response) => {
           console.log(response);
           this.showCategory();
-          this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: 'تم الحذف   ' });
-
+/*           this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: 'تم الحذف   ' });
+ */
         },
         error: (err) => {
           console.log(err);
-          this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: err.message });
-
+/*           this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: err.message });
+ */
         },
-      }); */
+      });
     }
 
 }
