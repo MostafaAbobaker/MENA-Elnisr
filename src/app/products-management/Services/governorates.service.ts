@@ -21,6 +21,7 @@ export class GovernoratesService {
   addGovernorates(gov:IGovernorates) : Observable<any> {
     return this._http.post('http://elnisr.webxy.net/api/Governorates/Add',
       {
+        id:0,
         nameAr: gov.nameAr,
         nameEn: gov.nameEn,
         isFreeDelivery: gov.isFreeDelivery,

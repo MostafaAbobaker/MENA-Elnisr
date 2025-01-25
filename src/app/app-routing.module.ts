@@ -5,11 +5,13 @@ import { ProductDetailsComponent } from './Components/product-details/product-de
 import { ProductsComponent } from './Components/products/products.component';
 import { NotFound404Component } from './shared/Components/not-found404/not-found404.component';
 import { ShippingDetailsComponent } from './Components/shipping-details/shipping-details.component';
+import { LoginComponent } from './products-management/Components/login/login.component';
 
 const routes: Routes = [
   { path: '',redirectTo:'home', pathMatch: 'full' },
   {path: 'home', component: HomeComponent},
   { path: 'Products', component:ProductsComponent},
+  { path: 'Login', component:LoginComponent},
   { path: 'products-management',
     loadChildren:()=>(import('./products-management/products-management.module').then(m => m.ProductsManagementModule))
 

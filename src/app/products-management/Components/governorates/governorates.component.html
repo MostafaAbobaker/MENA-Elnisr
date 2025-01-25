@@ -50,7 +50,7 @@
                     قيمة التوصيل مجانى
                   </label>
                 </div>
-                <button class="btn btn-success ms-auto btn-sm px-4 mt-4 d-inline-block" *ngIf="!buttonEdit">إضافة</button>
+                <button class="btn btn-success ms-auto btn-sm px-4 mt-4 d-inline-block" [disabled]="formGovernorates.invalid" *ngIf="!buttonEdit">إضافة</button>
                 <button class="btn btn-primary ms-auto btn-sm px-4 mt-4 d-inline-block" *ngIf="buttonEdit">تعديل</button>
               </div>
           </div>
