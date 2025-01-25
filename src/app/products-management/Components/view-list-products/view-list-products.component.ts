@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { IProduct } from 'src/app/Interfaces/iproduct';
+import { ProductsService } from 'src/app/Services/products.service';
 
 @Component({
   selector: 'app-view-list-products',
@@ -10,26 +11,25 @@ import { IProduct } from 'src/app/Interfaces/iproduct';
 export class ViewListProductsComponent implements OnInit {
   textSearch:string =''
   productsList:IProduct[] = [];
-  constructor(private _productService:ProductService) {}
+  constructor(private _productService:ProductsService) {}
   ngOnInit(): void {
     this.showProduct();
   }
   showProduct() {
     debugger
     this._productService.getProducts().subscribe({
-      next: (products) => {
-        console.log(products);
-        this.productsList = products;
+      next:(response)=>{
+        this.productsList = response.data;
+        console.log( this.productsList);
       },
-      error: (error) => {
-        console.log(error);
-      }
-    })
+      error:(err)=>{ console.log(err);
+      },
+    });
   }
   editProduct(product:IProduct){
     console.log(product);
   }
-  deleteProduct(id:number){
+  deleteProduct(id:string){
     console.log(id);
   }
 }

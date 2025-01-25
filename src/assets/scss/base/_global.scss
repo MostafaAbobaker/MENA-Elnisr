@@ -20,7 +20,9 @@ a {
   direction: ltr;
 }
 
-
+[type=email], [type=number], [type=tel], [type=url] {
+  text-align: end ;
+}
 
 * {
   scrollbar-color: #000 #555;

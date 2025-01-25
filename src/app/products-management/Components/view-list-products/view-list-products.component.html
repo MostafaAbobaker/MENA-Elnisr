@@ -17,7 +17,7 @@
       </div>
       <div class="col-lg-3"></div>
        <div class="col-lg-12">
-        <p-table [value]="productsList" >
+         <p-table [value]="productsList" >
 
           <ng-template pTemplate="header">
               <tr>
@@ -31,20 +31,51 @@
           </ng-template>
           <ng-template pTemplate="body" let-product>
               <tr>
-                  <td>{{product.title}}</td>
-                  <td><img [src]="product?.imageCover" [alt]="product.title" width="100" class="shadow-4" /></td>
-                  <td>{{ product?.price| number:'1.0-0' }} <sub> جنية  </sub></td>
+                  <td>{{product.title | sliceText : 3}}</td>
+                  <td><img [src]="product?.imageCover"  class="img-thumbnail shadow-4" [alt]="product.title" width="100" /></td>
                   <td>{{ product?.price| number:'1.0-0' }} <sub> جنية  </sub></td>
                   <td>{{product?.category!.name}}</td>
                   <td></td>
                   <td>
-                    <button class="btn btn-sm btn-success mx-2" (click)="editProduct(product)"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-primary mx-2" (click)="editProduct(product)"><i class="fa-regular fa-pen-to-square"></i></button>
                     <button class="btn btn-sm btn-danger mx-2" (click)="deleteProduct(product)"><i class="fa-solid fa-trash-can"></i></button>
                   </td>
               </tr>
           </ng-template>
 
       </p-table>
+
+      <!-- <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>صورة</td>
+              <td>اسم المنتج</td>
+              <td>الفئة</td>
+              <td>السعر الحالى</td>
+              <td>السعر القديم</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of productsList ">
+              <td>
+                <div class="image" >
+                  <img [src]="product.imageCover" alt=""  class="img-thumbnail" height="100">
+                </div>
+              </td>
+              <td>{{product.title | sliceText : 3}}</td>
+              <td>{{product?.category!.name}}</td>
+              <td>{{ product.price| number:'1.0-0'}} <sub> جنية  </sub></td>
+              <td> <del> {{ product?.price! + ((product?.price! * 20)/100) | number:'1.0-0' }}</del><sub> جنية  </sub></td>
+              <td>
+                <button class="btn btn-sm btn-primary mx-2" (click)="editProduct(product)"><i class="fa-regular fa-pen-to-square"></i></button>
+                <button class="btn btn-sm btn-danger mx-2" (click)="deleteProduct(product._id)"><i class="fa-solid fa-trash-can"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div> -->
       </div>
     </div>
   </div>

@@ -2,3 +2,7 @@
   margin: 0 0 0 0 !important;
   margin-inline-start: 1rem !important;
 }
+
+tbody, td, tfoot, th, thead, tr {
+  text-align: start;
+}

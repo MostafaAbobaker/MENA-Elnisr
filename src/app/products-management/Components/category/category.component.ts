@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ICategory } from '../../Interfaces/icategory';
 import { CategoryService } from '../../Services/category.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+// import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-category',
@@ -28,7 +29,7 @@ export class CategoryComponent implements OnInit{
     imageForm: new FormControl(null, [Validators.required])
   })
 
-  constructor(private _categoryService:CategoryService
+  constructor(private _categoryService:CategoryService,
     // private messageService: MessageService  // Add this line if you want to use MessageService Toast
    ){}
   ngOnInit(): void {
@@ -56,7 +57,7 @@ export class CategoryComponent implements OnInit{
     let nameEn: string = this.formCategory.value.nameEn.toLocaleLowerCase().trim()
     let categoryNameEn = this.categories.some(Category => Category.nameEn.toLocaleLowerCase() === nameEn.toLocaleLowerCase())
 
-    if(this.formCategory.valid) {
+    /* if(this.formCategory.valid) {
       if(this.selectedCategory){
         this._categoryService.updateCategory(this.selectedCategory.id, this.formCategory.value,this.fileImage).subscribe({
           next: (response) => {
@@ -66,38 +67,36 @@ export class CategoryComponent implements OnInit{
             this.buttonEdit = false;
             this.formCategory.reset();
             this.selectedCategory = null;
-            // this.messageService.add({ severity: 'success', summary: 'تنبيه', detail: 'تم الاضافة بنجاح   ' });
 
           },
           error: (error) => {
             console.log('Error =>', error);
-            // this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: error.message });
 
           }
         })
       } else {
-        if(!categoryNameEn) {
-          this._categoryService.addCategories(this.formCategory.value , this.fileImage).subscribe({
-            next: (response) => {
-              console.log(response);
-              this.showCategory();
-              this.fileImage= '';
-              this.formCategory.reset();
-              // this.messageService.add({ severity: 'success', summary: 'تنبيه', detail: 'تم الاضافة بنجاح   ' });
 
-          },
-            error: (error) => {
-              console.log('Error =>', error);
-              // this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: error.message });
-
-          }
-          })
-        }
       }
 
 
-    }
-
+    } */
+      if(!categoryNameEn) {
+        this._categoryService.addCategories(this.formCategory.value , this.fileImage).subscribe({
+          next: (response) => {
+            console.log(response);
+            this.showCategory();
+            this.fileImage= '';
+            this.formCategory.reset();
+/*             this.messageService.add({ severity: 'success', summary: 'تنبيه', detail: 'تم الاضافة بنجاح   ' });
+ */
+        },
+          error: (error) => {
+            console.log('Error =>', error);
+/*             this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: `${error.message}` });
+ */
+        }
+        })
+      }
   }
 
     editCategory(Category: ICategory): void {

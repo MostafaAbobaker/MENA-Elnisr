@@ -14,6 +14,8 @@ import { FilterPipe } from './Pipes/filter.pipe';
 import { ViewListProductsComponent } from './Components/view-list-products/view-list-products.component';
 import { TableModule } from 'primeng/table';
 import { LoginComponent } from './Components/login/login.component';
+import { SharedModule } from 'primeng/api';
+import { SliceTextPipe } from '../shared/Pipes/slice-text.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { LoginComponent } from './Components/login/login.component';
     GovernoratesComponent,
     FilterPipe,
     ViewListProductsComponent,
-    LoginComponent
+    LoginComponent,
+    SliceTextPipe
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,9 @@ import { LoginComponent } from './Components/login/login.component';
     FormsModule,
     HttpClientModule,
     ToastModule,
-    TableModule
+    TableModule,
+    SharedModule,
+
   ]
 })
 export class ProductsManagementModule { }

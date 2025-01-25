@@ -63,8 +63,13 @@ export class GovernoratesComponent implements OnInit {
               this.buttonEdit = false;
               this.formGovernorates.reset();
               this.selectedGovernorate = null;
+              this.messageService.add({ severity: 'success', summary: 'تنبيه', detail: 'تم التعديل بنجاح   ' });
+
             },
-            error: (err) => { console.log(err); },
+            error: (err) => { console.log(err);
+              this.messageService.add({ severity: 'error', summary: 'تنبيه', detail: err.message });
+
+            },
           })
         } else {
           if (!govListNameEn) {
@@ -76,6 +81,8 @@ export class GovernoratesComponent implements OnInit {
             },
             error: (err) => {
               console.log(err);
+              this.messageService.add({ severity: 'error', summary: 'تنبيه', detail: err.message });
+
             },
           })
         } else {
@@ -107,6 +114,8 @@ export class GovernoratesComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.messageService.add({ severity: 'error', summary: 'تنبيه', detail: err.message });
+
       },
     });
   }
