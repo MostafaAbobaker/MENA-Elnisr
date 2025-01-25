@@ -19,13 +19,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ProductItemComponent } from './Components/product-item/product-item.component';
 import { EGPPipe } from './shared/Pipes/egp.pipe';
-import { SliceTextPipe } from './shared/Pipes/slice-text.pipe';
 import { InfoShippingComponent } from './Components/info-shipping/info-shipping.component';
 import { TestimonialComponent } from './Components/testimonial/testimonial.component';
 import { MoreProductsComponent } from './Components/more-products/more-products.component';
 import { ShippingDetailsComponent } from './Components/shipping-details/shipping-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
+import { SliceTextPipe } from './shared/Pipes/slice-text.pipe';
 
 @NgModule({
   declarations: [
@@ -43,10 +43,11 @@ import { ToastModule } from 'primeng/toast';
     ProductItemComponent,
     EGPPipe,
     SliceTextPipe,
-    InfoShippingComponent,
     TestimonialComponent,
     MoreProductsComponent,
-    ShippingDetailsComponent
+    ShippingDetailsComponent,
+    InfoShippingComponent
+
   ],
   imports: [
     BrowserModule,
@@ -56,7 +57,12 @@ import { ToastModule } from 'primeng/toast';
     CarouselModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+
+  ],
+  exports:[
+    SliceTextPipe,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

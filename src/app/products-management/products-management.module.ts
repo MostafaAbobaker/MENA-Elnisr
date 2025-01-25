@@ -9,13 +9,13 @@ import { GovernoratesComponent } from './Components/governorates/governorates.co
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ToastModule } from 'primeng/toast';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { ViewListProductsComponent } from './Components/view-list-products/view-list-products.component';
 import { TableModule } from 'primeng/table';
 import { LoginComponent } from './Components/login/login.component';
 import { SharedModule } from 'primeng/api';
-import { SliceTextPipe } from '../shared/Pipes/slice-text.pipe';
+import { ToastModule } from 'primeng/toast';
+import { TextSlicePipe } from './Pipes/text-slice.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { SliceTextPipe } from '../shared/Pipes/slice-text.pipe';
     FilterPipe,
     ViewListProductsComponent,
     LoginComponent,
-    SliceTextPipe
+    TextSlicePipe
   ],
   imports: [
     CommonModule,
@@ -35,9 +35,9 @@ import { SliceTextPipe } from '../shared/Pipes/slice-text.pipe';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ToastModule,
     TableModule,
     SharedModule,
+    ToastModule
 
   ]
 })
