@@ -1,127 +1,83 @@
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from '../../Interfaces/icategory';
 import { CategoryService } from '../../Services/category.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 // import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  styleUrls: ['./category.component.scss'],
 })
-export class CategoryComponent implements OnInit{
+export class CategoryComponent implements OnInit {
+  textSearch: string = '';
+  isAdd: boolean = false;
+  buttonEdit: boolean = false;
+  getCategory: ICategory[] = [];
 
-  categories:ICategory[] = [];
+  imageP: File | null = null;
+  uploadSuccess: boolean = false;
+  formCategory: FormGroup;
 
-  isAdd:boolean = false
-  buttonEdit:boolean = false
-  fileImage:string =''
-  selectedCategory: any = null; // Add this line
+  fileUploadForm: any;
 
+  constructor(
+    private _categoryService: CategoryService,
+    private fb: FormBuilder
+  ) {
+    this.formCategory = this.fb.group({
+      id: new FormControl(null),
+      nameAr: new FormControl(null, [Validators.required]),
+      nameEn: new FormControl(null, [Validators.required]),
+      imagepath: new FormControl(null),
+    });
+  }
 
-
-  formCategory:FormGroup = new FormGroup({
-    nameAr: new FormControl(null, [Validators.required, Validators.pattern(/^[\u0600-\u06FF\s]+$/)]),
-    nameEn: new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
-    descEn:new FormControl(null),
-    descAr:new FormControl(null),
-    categoryImage: new FormControl(null),
-    imageForm: new FormControl(null, [Validators.required])
-  })
-
-  constructor(private _categoryService:CategoryService,
-    // private messageService: MessageService  // Add this line if you want to use MessageService Toast
-   ){}
+  onFileSelected(file: File): void {
+    this.imageP = file;
+    this.formCategory.patchValue({ imagepath: file });
+  }
   ngOnInit(): void {
-    this.showCategory()
+    this.showCategory();
   }
 
   showCategory() {
     this._categoryService.getCategories().subscribe({
       next: (response) => {
-        this.categories = response.data;
+        console.log(response);
+        this.getCategory = response.data;
+        console.log(response.data);
       },
-      error: (error) => {
-        console.log('Error =>', error);
-      }
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 
-  changeFile(event:any){
-    this.fileImage = event.target.files[0].name;
+  addCategory(): void {
+    console.log('imageP', this.imageP);
+    this.formCategory.value.imagepath = this.imageP;
+    console.log('formCategory', this.formCategory.value);
 
+    this._categoryService.AddCategory(this.formCategory.value).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.showCategory();
+        this.isAdd = false;
+        this.buttonEdit = false;
+        this.formCategory.reset();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
-  addCategory(){
-    console.log(this.formCategory);
-    let nameEn: string = this.formCategory.value.nameEn.toLocaleLowerCase().trim()
-    let categoryNameEn = this.categories.some(Category => Category.nameEn.toLocaleLowerCase() === nameEn.toLocaleLowerCase())
-
-    /* if(this.formCategory.valid) {
-      if(this.selectedCategory){
-        this._categoryService.updateCategory(this.selectedCategory.id, this.formCategory.value,this.fileImage).subscribe({
-          next: (response) => {
-            console.log(response);
-            this.showCategory();
-            this.isAdd = false;
-            this.buttonEdit = false;
-            this.formCategory.reset();
-            this.selectedCategory = null;
-
-          },
-          error: (error) => {
-            console.log('Error =>', error);
-
-          }
-        })
-      } else {
-
-      }
-
-
-    } */
-      if(!categoryNameEn) {
-        this._categoryService.addCategories(this.formCategory.value , this.fileImage).subscribe({
-          next: (response) => {
-            console.log(response);
-            this.showCategory();
-            this.fileImage= '';
-            this.formCategory.reset();
-/*             this.messageService.add({ severity: 'success', summary: 'تنبيه', detail: 'تم الاضافة بنجاح   ' });
- */
-        },
-          error: (error) => {
-            console.log('Error =>', error);
-/*             this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: `${error.message}` });
- */
-        }
-        })
-      }
-  }
-
-    editCategory(Category: ICategory): void {
-      this.isAdd = true;
-      this.buttonEdit = true;
-      this.selectedCategory = Category;
-      this.formCategory.patchValue(Category)
-      window.scrollTo(0, 0);
-
-    }
-
-    deleteCategory(id: number) {
-      this._categoryService.deleteCategory(id).subscribe({
-        next: (response) => {
-          console.log(response);
-          this.showCategory();
-/*           this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: 'تم الحذف   ' });
- */
-        },
-        error: (err) => {
-          console.log(err);
-/*           this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: err.message });
- */
-        },
-      });
-    }
-
+  editCategory(category: ICategory) {}
+  deleteCategory(id: number) {}
 }

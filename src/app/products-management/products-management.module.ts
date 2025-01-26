@@ -16,6 +16,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { SharedModule } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { TextSlicePipe } from './Pipes/text-slice.pipe';
+import { UploadComponent } from './Components/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TextSlicePipe } from './Pipes/text-slice.pipe';
     FilterPipe,
     ViewListProductsComponent,
     LoginComponent,
-    TextSlicePipe
+    TextSlicePipe,
+    UploadComponent
   ],
   imports: [
     CommonModule,

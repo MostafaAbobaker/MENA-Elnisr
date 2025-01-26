@@ -37,9 +37,8 @@
           <div class="col-lg-3">
             <div class="">
               <label for="Fees" class="form-label"> صورة الغلاف</label>
-              <input type="file" class="form-control text-start" id="Fees" formControlName="imageForm" (change)="changeFile($event)">
-              <div class="text-danger" *ngIf="formCategory.get('imageForm')?.invalid && formCategory.get('imageForm')?.touched">
-                 <div *ngIf="formCategory.get('imageForm')?.getError('required')">هذا الحق اجبارى</div> </div>
+              <app-upload (fileSelected)="onFileSelected($event)"></app-upload>
+
             </div>
           </div>
           <div class="col-lg-3">
@@ -70,11 +69,11 @@
       </div>
       <!-- End Code -->
 
-      <div class="col-lg-3 col-md-6" *ngFor="let category of categories">
+      <div class="col-lg-3 col-md-6" *ngFor="let category of getCategory">
         <div class="card">
           <div class="image">
 
-            <img [src]="'http://elnisr.webxy.net/'+category.file" [alt]="category.nameAr" [title]="category.nameAr" class="rounded-4 w-100 h-100 object-fit-cover">
+            <img [src]="'http://elnisr.webxy.net/ImageSrc/Categories/'+category.image" [alt]="category.nameAr" [title]="category.nameAr" class="rounded-4 w-100 h-100 object-fit-cover">
           </div>
         <h5 class="text-center fw-bold text-dark mt-3">{{category.nameAr}}</h5>
         <div class="button-action  ">
