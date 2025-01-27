@@ -19,7 +19,7 @@ export class CategoryComponent implements OnInit {
   isAdd: boolean = false;
   buttonEdit: boolean = false;
   getCategory: ICategory[] = [];
-
+  selectedCategory: any = null; // Add this line
   imageP: File | null = null;
   uploadSuccess: boolean = false;
   formCategory: FormGroup;
@@ -32,9 +32,9 @@ export class CategoryComponent implements OnInit {
   ) {
     this.formCategory = this.fb.group({
       id: new FormControl(null),
-      nameAr: new FormControl(null, [Validators.required]),
-      nameEn: new FormControl(null, [Validators.required]),
-      file: new FormControl(null),
+      nameAr: new FormControl(null, [Validators.required, Validators.pattern(/^[\u0600-\u06FF\s]+$/)]),
+      nameEn: new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
+        file: new FormControl(null),
     });
   }
 
@@ -64,20 +64,68 @@ export class CategoryComponent implements OnInit {
     this.formCategory.value.file = this.imageP;
     console.log('formCategory', this.formCategory.value);
 
-    this._categoryService.AddCategory(this.formCategory.value).subscribe({
+    let nameEn: string = this.formCategory.value.nameEn.toLocaleLowerCase().trim()
+    let catListNameEn = this.getCategory.some(gov => gov.nameEn.toLocaleLowerCase() === nameEn.toLocaleLowerCase())
+
+    debugger
+    if(this.formCategory.valid) {
+
+        if(this.selectedCategory) {
+
+          this._categoryService.updateCategory(this.formCategory.value).subscribe({
+            next: (response) => {
+              console.log(response);
+              this.showCategory();
+              this.isAdd = false;
+              this.buttonEdit = false;
+              this.formCategory.reset();
+              this.selectedCategory = null;
+            },
+            error: (err) => {
+              console.log(err);
+              alert(`This Category is already exist ${err.message}`  )
+            },
+          });
+
+        } else {
+          if(!catListNameEn) {
+            this._categoryService.AddCategory(this.formCategory.value).subscribe({
+              next: (response) => {
+                console.log(response);
+                this.showCategory();
+                this.isAdd = false;
+                this.buttonEdit = false;
+                this.formCategory.reset();
+              },
+              error: (err) => {
+                console.log(err);
+              },
+            });
+          } else {
+            alert('This Category is already exist')
+          }
+        }
+    }
+
+
+  }
+
+  editCategory(category: ICategory) {
+    this.isAdd = true;
+    this.buttonEdit = true;
+    this.selectedCategory = category;
+    this.formCategory.patchValue(category)
+    window.scrollTo(0, 0);
+  }
+  deleteCategory(id: number) {
+    this._categoryService.deleteCategory(id).subscribe({
       next: (response) => {
         console.log(response);
         this.showCategory();
-        this.isAdd = false;
-        this.buttonEdit = false;
-        this.formCategory.reset();
       },
       error: (err) => {
         console.log(err);
       },
     });
   }
-
-  editCategory(category: ICategory) {}
-  deleteCategory(id: number) {}
 }

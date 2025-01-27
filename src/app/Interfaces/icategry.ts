@@ -1,5 +1,7 @@
 export interface ICategry {
-  _id: string,
-  name: string,
-  image: string,
+  nameAr:string,
+  nameEn:string,
+  imagePath:string,
+  file?:any,
+  id: number,
 }

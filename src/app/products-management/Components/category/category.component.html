@@ -36,16 +36,17 @@
           </div>
           <div class="col-lg-3">
             <div class="">
-              <label for="Fees" class="form-label"> صورة الغلاف</label>
-              <app-upload (fileSelected)="onFileSelected($event)"></app-upload>
+              <label for="Fees" class="form-label d-block"> صورة الغلاف</label>
+              <app-upload (fileSelected)="onFileSelected($event)" class="form-control form-control-sm"></app-upload>
 
             </div>
           </div>
           <div class="col-lg-3">
+            <div class="mb-2">&nbsp;</div>
             <div class=" d-flex align-items-center">
 
-                <button class="btn btn-success ms-auto btn-sm px-4 mt-4 d-inline-block" >إضافة</button>
-                <button class="btn btn-primary ms-auto btn-sm px-4 mt-4 d-inline-block" *ngIf="buttonEdit">تعديل</button>
+                <button class="btn btn-success  btn-sm px-4  d-inline-block"  [disabled]="formCategory.invalid" *ngIf="!buttonEdit">إضافة</button>
+                <button class="btn btn-primary  btn-sm px-4  d-inline-block" *ngIf="buttonEdit">تعديل</button>
               </div>
           </div>
         </div>
@@ -53,27 +54,13 @@
     </form>
   </div>
     <div class="row g-3">
-      <!-- This Example To View Design -->
-      <div class="col-lg-3 col-md-6" >
-        <div class="card">
-          <div class="image" style="height: 200px;">
 
-            <img src="../../../../assets/images/women.jpeg" alt="Men's Fashion" title="Men's Fashion" class="rounded-4 w-100 h-100 object-fit-contain">
-          </div>
-        <h5 class="text-center fw-bold text-dark mt-3">أزياء نسائية</h5>
-        <div class="button-action  ">
-          <button class="btn btn-outline-primary btn-sm" ><i class="fa-solid fa-pencil"></i> </button>
-          <button class="btn btn-outline-danger btn-sm" > <i class="fa-solid fa-trash-can"></i></button>
-          </div>
-        </div>
-      </div>
-      <!-- End Code -->
 
       <div class="col-lg-3 col-md-6" *ngFor="let category of getCategory">
         <div class="card">
-          <div class="image">
+          <div class="image mb-3 " style="height: 200px;">
 
-            <img [src]="'http://elnisr.webxy.net/ImageSrc/Categories/'+category.imagePath" [alt]="category.nameAr" [title]="category.nameAr" class="rounded-4 w-100 h-100 object-fit-cover">
+            <img [src]="'http://elnisr.webxy.net/'+category.imagePath" [alt]="category.nameAr" [title]="category.nameAr" class="img-thumbnail  w-100 h-100 object-fit-contain">
           </div>
         <h5 class="text-center fw-bold text-dark mt-3">{{category.nameAr}}</h5>
         <div class="button-action  ">

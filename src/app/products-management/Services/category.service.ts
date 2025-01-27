@@ -25,7 +25,7 @@ export class CategoryService {
   } */
 
 
-    AddCategory(category:ICategory) : Observable<any> {
+  AddCategory(category:ICategory) : Observable<any> {
 
     const formData = new FormData();
             // Append the id
@@ -36,19 +36,22 @@ export class CategoryService {
     console.log('goformDatav',formData)
     return this._http.post(this.base_URL+'Category/AddCategory', formData)
 
-  }
+  }
 
 
 
 
-  updateCategory(id :number,category:ICategory , fileName:string ) : Observable<any> {
-      return this._http.put('http://elnisr.webxy.net/api/Category/UpdateCategory',
-        {
-          id: id,
-          nameAr:category.nameAr,
-          nameEn:category.nameEn,
-          file: fileName,
-        })
+  updateCategory(category:ICategory  ) : Observable<any> {
+    const formData = new FormData();
+
+    formData.append('id', category.id.toString());
+    formData.append('nameAr', category.nameAr);
+    formData.append('nameEn', category.nameEn);
+    formData.append('file', category.file); // File can be null
+
+    console.log('goformDatav',formData)
+
+      return this._http.put(this.base_URL+'Category/UpdateCategory', formData)
     }
 
   deleteCategory(id:number) : Observable<any> {

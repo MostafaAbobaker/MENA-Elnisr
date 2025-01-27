@@ -9,8 +9,8 @@ export class ProductsService {
 
   constructor(private _http:HttpClient) { }
 
-  getCategories():Observable<any>{
-    return this._http.get('https://ecommerce.routemisr.com/api/v1/categories')
+  getCategories(): Observable<any> {
+    return this._http.get('http://elnisr.webxy.net/api/Category/GetAllCategories');
   }
 
   getProducts():Observable<any> {

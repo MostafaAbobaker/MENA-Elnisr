@@ -7,7 +7,7 @@
     <img [src]="product?.imageCover" [alt]="product?.title" [title]="product?.title" height="200"  class=" w-100 h-100 object-fit-contain ">
   </div>
   <div class="card-body">
-    <small class="text-secondary">{{product?.category!.name}}</small>
+    <!-- <small class="text-secondary">{{product?.category!.name}}</small> -->
     <h5 class="card-title fw-bold">{{product?.title! | sliceText : 3}}</h5>
     <div class="price mb-3">
       <span class="h4"> {{ product?.price| number:'1.0-0'}} <sub> جنية  </sub>  <small><del class="text-secondary ms-3">{{ product?.price! + ((product?.price! * 20)/100) | number:'1.0-0' }} <sub> جنية  </sub></del></small></span>

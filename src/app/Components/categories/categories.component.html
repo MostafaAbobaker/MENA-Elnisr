@@ -7,10 +7,11 @@
         <ng-template carouselSlide >
           <a class="text-center">
             <div class="image">
+              <img [src]="'http://elnisr.webxy.net/'+slide.imagePath" [alt]="slide.nameAr" [title]="slide.nameAr" class="  w-100 h-100 object-fit-contain">
 
-              <img [src]="slide.image" [alt]="slide.name" [title]="slide.name" class="rounded-4 w-100 h-100 object-fit-cover">
+              <!-- <img [src]="slide.imagePath" [alt]="slide.name" [title]="slide.name" class="rounded-4 w-100 h-100 object-fit-cover"> -->
             </div>
-          <h5 class="text-center fw-bold text-dark mt-3">{{slide.name}}</h5>
+          <h5 class="text-center fw-bold text-dark mt-3">{{slide.nameAr}}</h5>
         </a>
         </ng-template>
       </ng-container>
