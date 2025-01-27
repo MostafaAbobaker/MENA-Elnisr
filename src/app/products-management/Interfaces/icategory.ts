@@ -1,7 +1,7 @@
 export interface ICategory {
   nameAr:string,
   nameEn:string,
-  imagepath:any,
-  image?:string,
+  imagePath:string,
+  file?:any,
   id: number,
 }

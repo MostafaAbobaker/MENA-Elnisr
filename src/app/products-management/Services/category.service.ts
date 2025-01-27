@@ -31,7 +31,7 @@ export class CategoryService {
             // Append the id
     formData.append('nameAr', category.nameAr);
     formData.append('nameEn', category.nameEn);
-    formData.append('imagepath', category.imagepath); // File can be null
+    formData.append('file', category.file); // File can be null
 
     console.log('goformDatav',formData)
     return this._http.post(this.base_URL+'Category/AddCategory', formData)

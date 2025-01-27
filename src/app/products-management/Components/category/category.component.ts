@@ -34,13 +34,13 @@ export class CategoryComponent implements OnInit {
       id: new FormControl(null),
       nameAr: new FormControl(null, [Validators.required]),
       nameEn: new FormControl(null, [Validators.required]),
-      imagepath: new FormControl(null),
+      file: new FormControl(null),
     });
   }
 
   onFileSelected(file: File): void {
     this.imageP = file;
-    this.formCategory.patchValue({ imagepath: file });
+    this.formCategory.patchValue({ file: file });
   }
   ngOnInit(): void {
     this.showCategory();
@@ -61,7 +61,7 @@ export class CategoryComponent implements OnInit {
 
   addCategory(): void {
     console.log('imageP', this.imageP);
-    this.formCategory.value.imagepath = this.imageP;
+    this.formCategory.value.file = this.imageP;
     console.log('formCategory', this.formCategory.value);
 
     this._categoryService.AddCategory(this.formCategory.value).subscribe({
