@@ -10,118 +10,75 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit{
+  categories: ICategory[] = [];
+  isAdd: boolean = false;
+  buttonEdit: boolean = false;
+  fileImage: any;
+  categoryForm: any;
+  constructor(private _categoryService:CategoryService) {
+    this.categoryForm = new FormGroup({
+      nameAr: new FormControl(''),
+      nameEn: new FormControl(''),
+      file: new FormControl('' ),
+    })
+  }
 
-  categories:ICategory[] = [];
 
-  isAdd:boolean = false
-  buttonEdit:boolean = false
-  fileImage:string =''
-  selectedCategory: any = null; // Add this line
-
-
-
-  formCategory:FormGroup = new FormGroup({
-    nameAr: new FormControl(null, [Validators.required, Validators.pattern(/^[\u0600-\u06FF\s]+$/)]),
-    nameEn: new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
-    descEn:new FormControl(null),
-    descAr:new FormControl(null),
-    categoryImage: new FormControl(null),
-    imageForm: new FormControl(null, [Validators.required])
-  })
-
-  constructor(private _categoryService:CategoryService,
-    // private messageService: MessageService  // Add this line if you want to use MessageService Toast
-   ){}
   ngOnInit(): void {
-    this.showCategory()
+    this.showCategories()
   }
-
-  showCategory() {
+  showCategories() {
     this._categoryService.getCategories().subscribe({
-      next: (response) => {
-        this.categories = response.data;
+      next: (data) => {
+        this.categories = data.data;
       },
-      error: (error) => {
-        console.log('Error =>', error);
+      error: (err) => {
+        console.log(err);
       }
-    });
+    })
   }
+  changeFile(event: any) {
+    console.log(event.target.files);
 
-  changeFile(event:any){
-    this.fileImage = event.target.files[0].name;
+    this.fileImage = event.target.files[0];
 
+    this.categoryForm.patchValue({ file: this.fileImage });
   }
+  addCategory() {
+    console.log(this.categoryForm);
+    console.log(this.categoryForm.value);
+    const categoryData: ICategory = {
+      nameAr: this.categoryForm.get('nameAr')?.value,
+      nameEn: this.categoryForm.get('nameEn')?.value,
+      file: this.categoryForm.get('file')?.value
+    };
+      this._categoryService.addCategories(this.categoryForm).subscribe({
+        next: (data) => {
+          this.showCategories();
+          console.log(data);
 
-  addCategory(){
-    console.log(this.formCategory);
-    let nameEn: string = this.formCategory.value.nameEn.toLocaleLowerCase().trim()
-    let categoryNameEn = this.categories.some(Category => Category.nameEn.toLocaleLowerCase() === nameEn.toLocaleLowerCase())
-
-    /* if(this.formCategory.valid) {
-      if(this.selectedCategory){
-        this._categoryService.updateCategory(this.selectedCategory.id, this.formCategory.value,this.fileImage).subscribe({
-          next: (response) => {
-            console.log(response);
-            this.showCategory();
-            this.isAdd = false;
-            this.buttonEdit = false;
-            this.formCategory.reset();
-            this.selectedCategory = null;
-
-          },
-          error: (error) => {
-            console.log('Error =>', error);
-
-          }
-        })
-      } else {
-
-      }
-
-
-    } */
-      if(!categoryNameEn) {
-        this._categoryService.addCategories(this.formCategory.value , this.fileImage).subscribe({
-          next: (response) => {
-            console.log(response);
-            this.showCategory();
-            this.fileImage= '';
-            this.formCategory.reset();
-/*             this.messageService.add({ severity: 'success', summary: 'تنبيه', detail: 'تم الاضافة بنجاح   ' });
- */
-        },
-          error: (error) => {
-            console.log('Error =>', error);
-/*             this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: `${error.message}` });
- */
-        }
-        })
-      }
-  }
-
-    editCategory(Category: ICategory): void {
-      this.isAdd = true;
-      this.buttonEdit = true;
-      this.selectedCategory = Category;
-      this.formCategory.patchValue(Category)
-      window.scrollTo(0, 0);
-
-    }
-
-    deleteCategory(id: number) {
-      this._categoryService.deleteCategory(id).subscribe({
-        next: (response) => {
-          console.log(response);
-          this.showCategory();
-/*           this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: 'تم الحذف   ' });
- */
         },
         error: (err) => {
           console.log(err);
-/*           this.messageService.add({ severity: 'info', summary: 'تنبيه', detail: err.message });
- */
-        },
-      });
-    }
+        }
+      })
 
+  }
+  editCategory(category:ICategory) {
+    /* this.categoryForm.setValue({
+      nameAr: category.nameAr,
+      nameEn: category.nameEn,
+      file: category.imagePath
+    }) */
+  }
+  deleteCategory(id:number) {
+    /* this._categoryService.deleteCategory(id).subscribe({
+      next: (data) => {
+        this.showCategories();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    }) */
+  }
 }

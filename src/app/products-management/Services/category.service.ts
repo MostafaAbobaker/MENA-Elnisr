@@ -14,12 +14,12 @@ export class CategoryService {
     return this._http.get('http://elnisr.webxy.net/api/Category/GetAllCategories');
   }
 
-  addCategories(category:ICategory , fileName:string): Observable<any> {
-    return this._http.post('http://elnisr.webxy.net/api/Category/GetAllCategories',
+  addCategories(category:ICategory): Observable<any> {
+    return this._http.post('http://elnisr.webxy.net/api/Category/AddCategory',
       {
         nameAr:category.nameAr,
         nameEn:category.nameEn,
-        file: fileName,
+        file: category.file,
       }
     )
   }

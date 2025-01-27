@@ -8,7 +8,7 @@
       </button>
     </div>
     <div class="add-item bg-light p-2 mb-3 rounded-2" *ngIf="isAdd">
-      <form class="form" (ngSubmit)="addCategory()" [formGroup]="formCategory">
+      <form class="form" (ngSubmit)="addCategory()" [formGroup]="categoryForm">
       <div class="container">
 
         <div class="row">
@@ -17,9 +17,9 @@
               <label for="nameAr" class="form-label">الاسم العربى</label>
               <input type="text" class="form-control" formControlName="nameAr" id="nameAr" placeholder="الاسم العربى">
               <div class="text-danger"
-                *ngIf="formCategory.get('nameAr')?.invalid && formCategory.get('nameAr')?.touched">
-                  <div *ngIf="formCategory.get('nameAr')?.getError('required')">هذا الحق اجبارى</div>
-                  <div *ngIf="formCategory.get('nameAr')?.getError('pattern')"> من فضلك التزم كتابه حروف عربية</div>
+                *ngIf="categoryForm.get('nameAr')?.invalid && categoryForm.get('nameAr')?.touched">
+                  <div *ngIf="categoryForm.get('nameAr')?.getError('required')">هذا الحق اجبارى</div>
+                  <div *ngIf="categoryForm.get('nameAr')?.getError('pattern')"> من فضلك التزم كتابه حروف عربية</div>
                 </div>
             </div>
           </div>
@@ -28,18 +28,18 @@
               <label for="nameEn" class="form-label">الاسم الانجليزى</label>
               <input type="text" class="form-control" id="nameEn" formControlName="nameEn" placeholder="الاسم الانجليزى">
               <div class="text-danger"
-              *ngIf="formCategory.get('nameEn')?.invalid && formCategory.get('nameEn')?.touched">
-                <div *ngIf="formCategory.get('nameEn')?.getError('required')">هذا الحق اجبارى</div>
-                <div *ngIf="formCategory.get('nameEn')?.getError('pattern')"> من فضلك التزم كتابه حروف الانجليزى</div>
+              *ngIf="categoryForm.get('nameEn')?.invalid && categoryForm.get('nameEn')?.touched">
+                <div *ngIf="categoryForm.get('nameEn')?.getError('required')">هذا الحق اجبارى</div>
+                <div *ngIf="categoryForm.get('nameEn')?.getError('pattern')"> من فضلك التزم كتابه حروف الانجليزى</div>
               </div>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="">
               <label for="Fees" class="form-label"> صورة الغلاف</label>
-              <input type="file" class="form-control text-start" id="Fees" formControlName="imageForm" (change)="changeFile($event)">
-              <div class="text-danger" *ngIf="formCategory.get('imageForm')?.invalid && formCategory.get('imageForm')?.touched">
-                 <div *ngIf="formCategory.get('imageForm')?.getError('required')">هذا الحق اجبارى</div> </div>
+              <input type="file" class="form-control text-start" id="Fees" formControlName="file" (change)="changeFile($event)">
+              <div class="text-danger" *ngIf="categoryForm.get('file')?.invalid && categoryForm.get('file')?.touched">
+                 <div *ngIf="categoryForm.get('file')?.getError('required')">هذا الحق اجبارى</div> </div>
             </div>
           </div>
           <div class="col-lg-3">
@@ -74,12 +74,12 @@
         <div class="card">
           <div class="image">
 
-            <img [src]="'http://elnisr.webxy.net/'+category.file" [alt]="category.nameAr" [title]="category.nameAr" class="rounded-4 w-100 h-100 object-fit-cover">
+            <img [src]="'http://elnisr.webxy.net/'+category.imagePath" [alt]="category.nameAr" [title]="category.nameAr" class="rounded-4 w-100 h-100 object-fit-cover">
           </div>
         <h5 class="text-center fw-bold text-dark mt-3">{{category.nameAr}}</h5>
         <div class="button-action  ">
           <button class="btn btn-outline-primary btn-sm" (click)="editCategory(category)" ><i class="fa-solid fa-pencil"></i> </button>
-          <button class="btn btn-outline-danger btn-sm" (click)="deleteCategory(category.id)"> <i class="fa-solid fa-trash-can"></i></button>
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteCategory(category.id!)"> <i class="fa-solid fa-trash-can"></i></button>
           </div>
         </div>
       </div>
