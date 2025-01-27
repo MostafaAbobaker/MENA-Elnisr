@@ -7,5 +7,16 @@ export interface IProduct {
   isOffer:boolean,
   showHome:boolean,
   id:number,
-  imagePath:string,
+  files:any,
+  images:IPhotos[],
+  category:ICategory[],
+}
+interface IPhotos{
+  id: number,
+  imagePath: string,
+}
+interface ICategory{
+  id: number,
+  nameAr: string,
+  nameEn: string,
 }

@@ -56,7 +56,7 @@
                 <label for="category" class="form-label">الفئة</label>
                 <select class="form-select" id="category" formControlName="category">
                   <option value="" selected>اختر الفئة</option>
-                  <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+                  <option *ngFor="let category of categories" [value]="category.id">{{category.nameAr}}</option>
                 </select>
                <!--  <div class="text-danger" *ngIf="formProduct.get('category')?.invalid && formProduct.get('category')?.touched">
                   <div *ngIf="formProduct.get('category')?.getError('required')">هذا الحق اجبارى</div>
@@ -113,12 +113,12 @@
               </div>
 
             </div>
-            <div class="col-lg-12">
+            <!-- <div class="col-lg-12">
               <div class="">
                 <label for="Fees" class="form-label"> صورة تقييمات المنتج</label>
                 <input type="file" class="form-control text-start" id="Fees" formControlName="imageForm" (change)="changeFile($event)" >
-                <!-- <div class="text-danger" *ngIf="formProduct.get('imageForm')?.invalid && formProduct.get('imageForm')?.touched">
-                   <div *ngIf="formProduct.get('imageForm')?.getError('required')">هذا الحق اجبارى</div> </div> -->
+                <div class="text-danger" *ngIf="formProduct.get('imageForm')?.invalid && formProduct.get('imageForm')?.touched">
+                   <div *ngIf="formProduct.get('imageForm')?.getError('required')">هذا الحق اجبارى</div> </div>
               </div>
             </div>
             <div class="col-lg-12 ">
@@ -132,7 +132,7 @@
 
               </div>
 
-            </div>
+            </div> -->
           </div>
           </div>
       </form>

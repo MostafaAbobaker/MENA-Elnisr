@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
-import { IProduct } from 'src/app/Interfaces/iproduct';
-import { ProductsService } from 'src/app/Services/products.service';
+import { IProduct } from '../../Interfaces/iproduct';
 
 @Component({
   selector: 'app-view-list-products',
@@ -11,7 +10,7 @@ import { ProductsService } from 'src/app/Services/products.service';
 export class ViewListProductsComponent implements OnInit {
   textSearch:string =''
   productsList:IProduct[] = [];
-  constructor(private _productService:ProductsService) {}
+  constructor(private _productService:ProductService) {}
   ngOnInit(): void {
     this.showProduct();
   }

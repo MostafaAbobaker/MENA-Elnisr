@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CategoryService } from '../../Services/category.service';
+import { ICategory } from '../../Interfaces/icategory';
 
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
   styleUrls: ['./add-products.component.scss']
 })
-export class AddProductsComponent {
-  categories:any[] =[]
+export class AddProductsComponent implements OnInit {
+
+  categories!:ICategory[]
   filesImage:string []=[
     '1680402563605-cover.jpeg',
     '1680402563675-1.jpeg',
@@ -33,6 +36,24 @@ export class AddProductsComponent {
     features: new FormControl(null, [Validators.required]),
     imageForm: new FormControl(null, [Validators.required]),
   });
+
+  constructor(private _categoryService:CategoryService) { }
+  ngOnInit(): void {
+    this.showCategory()
+  }
+  showCategory() {
+    this._categoryService.getCategories().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.categories = response.data;
+        console.log(response.data);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
   changeFile(event:any){
   }
   addProduct() {
