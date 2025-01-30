@@ -2,16 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICategory } from '../Interfaces/icategory';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-   base_URL: string = 'http://elnisr.webxy.net/api/';
+  base_URL: string = 'http://elnisr.webxy.net/api/';
   constructor(private _http:HttpClient) { }
 
   getCategories(): Observable<any> {
-    return this._http.get('http://elnisr.webxy.net/api/Category/GetAllCategories');
+    return this._http.get( this.base_URL + 'Category/GetAllCategories');
   }
 
   /* AddCategory(category:ICategory ): Observable<any> {

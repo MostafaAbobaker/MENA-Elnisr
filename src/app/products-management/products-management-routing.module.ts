@@ -5,15 +5,15 @@ import { GovernoratesComponent } from './Components/governorates/governorates.co
 import { CategoryComponent } from './Components/category/category.component';
 import { ViewListProductsComponent } from './Components/view-list-products/view-list-products.component';
 import { AddProductsComponent } from './Components/add-products/add-products.component';
+import { authGuard } from '../shared/guards/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo:'products-management', pathMatch:'full' },
-  {path: 'products-management', component:ProductsManagementComponent},
-  {path: 'governorates', component:GovernoratesComponent},
-  {path: 'category', component:CategoryComponent},
-  {path: 'category', component:CategoryComponent},
-  {path: 'view-products', component:ViewListProductsComponent},
-  {path: 'add-products', component:AddProductsComponent},
+  {path: 'products-management',canActivate:[authGuard], component:ProductsManagementComponent},
+  {path: 'governorates',canActivate:[authGuard], component:GovernoratesComponent},
+  {path: 'category',canActivate:[authGuard], component:CategoryComponent},
+  {path: 'view-products',canActivate:[authGuard], component:ViewListProductsComponent},
+  {path: 'add-products',canActivate:[authGuard], component:AddProductsComponent},
 ];
 
 @NgModule({

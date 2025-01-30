@@ -6,16 +6,19 @@ import { ProductsComponent } from './Components/products/products.component';
 import { NotFound404Component } from './shared/Components/not-found404/not-found404.component';
 import { ShippingDetailsComponent } from './Components/shipping-details/shipping-details.component';
 import { LoginComponent } from './products-management/Components/login/login.component';
+import { OrderListComponent } from './products-management/Components/order-list/order-list.component';
+import { authGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   { path: '',redirectTo:'home', pathMatch: 'full' },
   {path: 'home', component: HomeComponent},
   { path: 'Products', component:ProductsComponent},
   { path: 'Login', component:LoginComponent},
-  { path: 'products-management',
+  { path: 'products-management', canActivate:[authGuard],
     loadChildren:()=>(import('./products-management/products-management.module').then(m => m.ProductsManagementModule))
 
   },
+  {path: 'order', component:OrderListComponent},
 
   { path: 'Product/:id', component:ProductDetailsComponent},
   { path: 'shipping-details/:id', component:ShippingDetailsComponent},

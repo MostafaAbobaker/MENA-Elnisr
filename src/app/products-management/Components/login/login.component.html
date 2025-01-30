@@ -5,22 +5,24 @@
     </div>
     <h3>تسجيل الدخول</h3>
     <p class="mb-4">مرحبا بعودتك! الرجاء إدخال التفاصيل الخاصة بك</p>
+    <p class="text-danger">{{errMessage}}</p>
     <form (ngSubmit)="login()" [formGroup]="formLogin">
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">البريد الالكترونى</label>
+        <label for="exampleFormControlInput1" class="form-label"> اسم المستخدم</label>
         <div class="input-group ">
-          <span class="input-group-text" id="basic-addon2"><i class="fa-regular fa-envelope"></i></span>
-          <input type="text" class="form-control" formControlName="username" placeholder="البريد الالكترونى" >
+          <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-user-tie"></i></span>
+          <input type="text" class="form-control form-control-lg " formControlName="username" placeholder="اسم المستخدم " >
         </div>
       </div>
       <div class="mb-4">
         <label for="exampleFormControlInput1" class="form-label"> الرقم السرى</label>
         <div class="input-group ">
           <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-unlock-keyhole"></i></span>
-          <input type="password" suggested="current-password" formControlName="password" class="form-control"  placeholder="الرقم السرى" autocomplete="off">
+          <input type="password" suggested="current-password" formControlName="password" class=" form-control-lg form-control"  placeholder="الرقم السرى" autocomplete="off">
         </div>
       </div>
-      <button class="btn btn-lg btn-success w-100">دخول</button>
+      <button class="btn btn-lg btn-success w-100" [disabled]="formLogin.invalid">دخول</button>
     </form>
   </div>
 </section>
+<p-toast ></p-toast>

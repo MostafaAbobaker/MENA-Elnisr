@@ -11,29 +11,29 @@
         <li class="nav-item">
           <a class="nav-link "  routerLink="/" routerLinkActive="active">الرئيسية</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/" routerLinkActive="active">من نحن </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/" routerLinkActive="active">عروض اليوم</a>
-        </li>
+        </li> -->
         <li class="nav-item">
-          <a class="nav-link"  href="/#MyFooter"> تواصل معنا</a>
+          <a class="nav-link"   > تواصل معنا</a>
         </li>
         <!-- <li class="nav-item" >
           <a class="nav-link text-body-tertiary" >
             <i class="fa-regular fa-user fs-4"></i>
           </a>
         </li> -->
-        <li class="nav-item dropdown" >
+        <li class="nav-item dropdown" *ngIf="isLogin">
           <a class="nav-link text-body-tertiary rounded-circle " title="User Name" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="./assets/images/man.png" alt="" class="rounded-circle border border-warning border-2 object-fit-cover" width="30" height="30">
           </a>
           <ul class="dropdown-menu z-3">
             <li><a class="dropdown-item" ><i class="fa-solid fa-chart-column me-2"></i>  لوحة المعلومات</a></li>
             <li><a class="dropdown-item" routerLink="products-management"><i class="fa-solid fa-box me-2"></i> عرض المنتجات</a></li>
-            <li><a class="dropdown-item" ><i class="fa-solid fa-dolly me-2"></i> عرض الطلبات</a></li>
-            <li><a class="dropdown-item" ><i class="fa-solid fa-right-from-bracket me-2"></i> تسجيل خروج </a></li>
+            <li><a class="dropdown-item" routerLink="order"><i class="fa-solid fa-dolly me-2"></i> عرض الطلبات</a></li>
+            <li><a class="dropdown-item" (click)="logOut()" ><i class="fa-solid fa-right-from-bracket me-2"></i> تسجيل خروج </a></li>
           </ul>
         </li>
 

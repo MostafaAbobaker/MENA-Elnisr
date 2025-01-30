@@ -6,9 +6,28 @@
           <img [src]="productDetails?.imageCover" alt="productDetails.title" class="w-100  object-fit-contain" height="200">
         </div>
         <h4 class="text-center">{{productDetails?.title}}</h4>
-        <div class="price text-center border-bottom border-2 mb-4 pb-3">
+        <div class="price text-center ">
           <span class="h3">بسعر <span class="text-danger">{{ productDetails?.price| number:'1.0-0'}}</span>  جنية    بدلاً من <span class="text-danger"><del>{{ productDetails?.price! + ((productDetails?.price! * 20)/100) | number:'1.0-0' }}</del></span> جنية</span>
         </div>
+        <div class="text-center h5">
+          <span>سعر التوصيل : </span>
+
+          <ng-container *ngIf="!selectGovernorates; else select">
+            <span >برجاء اختيار المحافظة</span>
+
+          </ng-container>
+          <ng-template #select>
+            <span>{{selectGovernorates?.deliverdFees}} <span>جنية</span></span>
+          </ng-template>
+
+
+          <div class="text-center h3">
+            <span>الاجمالى : </span>
+            <span class="text-danger">{{ productDetails?.price + selectGovernorates?.deliverdFees | number:'1.0-0'}}</span> جنية
+          </div>
+
+        </div>
+        <div class="border-bottom border-2 mb-4 pb-3"></div>
         <h3 class="text-center fw-bold"> 💡 ضمان رضاك التام:</h3>
         <p class="fw-bold text-center">✔️ حضرتك مش بتستلم إلا بعد ما تعاين المنتج بنفسك ☺️.</p>
         <p class="fw-bold text-center">✔️ لو المنتج معجبكش، ببساطة متستلموش بدون دفع اي مصاريف ❤️.
@@ -28,54 +47,43 @@
         </h4>
         <form (ngSubmit)="shippingForm()" [formGroup]="shippingDetails"  class="px-5">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" formControlName="name" id="floatingInput" placeholder="">
+            <input type="text" class="form-control" formControlName="clientName" id="floatingInput" placeholder="">
             <label for="floatingInput" class="fw-bold"> الاسم بالكامل
             </label>
+          </div>
+          <div class="text-danger" *ngIf="shippingDetails.get('clientName')?.invalid && shippingDetails.get('clientName')?.touched">
+            <div *ngIf="shippingDetails.get('clientName')?.getError('required')">هذا الحقل اجبارى</div>
+            <div *ngIf="shippingDetails.get('clientName')?.getError('pattern')">  valid Phone</div>
           </div>
           <div class="form-floating mb-3">
             <input type="text" class="form-control" formControlName="phone" id="floatingInput" placeholder="">
             <label for="floatingInput" class="fw-bold">  رقم الهاتف (اساسي)
             </label>
           </div>
+          <div class="text-danger" *ngIf="shippingDetails.get('phone')?.invalid && shippingDetails.get('phone')?.touched">
+            <div *ngIf="shippingDetails.get('phone')?.getError('required')">هذا الحقل اجبارى </div>
+            <div *ngIf="shippingDetails.get('phone')?.getError('pattern')">برجاء ادخل رقم تليفون صحيح</div>
+          </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" formControlName="phoneContact" id="floatingInput" placeholder="">
+            <input type="text" class="form-control" formControlName="whatsApp" id="floatingInput" placeholder="">
             <label for="floatingInput" class="fw-bold">    رقم واتساب (لتاكيد الاوردر) او رقم هاتف بديل
             </label>
           </div>
+          <div class="text-danger" *ngIf="shippingDetails.get('whatsApp')?.invalid && shippingDetails.get('whatsApp')?.touched">
+            <div *ngIf="shippingDetails.get('whatsApp')?.getError('required')">هذا الحقل اجبارى </div>
+            <div *ngIf="shippingDetails.get('whatsApp')?.getError('pattern')">برجاء ادخل رقم تليفون صحيح</div>
+          </div>
           <div class="form-floating mb-3">
-            <select class="form-select" id="floatingSelect" formControlName="conservatism" aria-label="Floating label select example">
-              <option selected>إختار المحافظة   </option>
-              <option value="الإسكندرية">الإسكندرية</option>
-              <option value="الإسماعيلية">الإسماعيلية</option>
-              <option value="أسوان	">أسوان	</option>
-              <option value="	أسيوط">أسيوط	</option>
-              <option value="	الأقصر">	الأقصر</option>
-              <option value="البحر الأحمر	">البحر الأحمر	</option>
-              <option value="البحيرة	">البحيرة	</option>
-              <option value="	بني سويف	">	بني سويف	</option>
-              <option value="بورسعيد	">بورسعيد	</option>
-              <option value="	جنوب سيناء">جنوب سيناء	</option>
-              <option value="الجيزة	">الجيزة	</option>
-              <option value="	الدقهلية">	الدقهلية</option>
-              <option value="	دمياط">دمياط	</option>
-              <option value="سوهاج	">	سوهاج</option>
-              <option value="	السويس">	السويس</option>
-              <option value="	الشرقية">	الشرقية</option>
-              <option value="شمال سيناء	">شمال سيناء	</option>
-              <option value="	الغربية">	الغربية</option>
-              <option value="	الفيوم">الفيوم	</option>
-              <option value="	القاهرة">	القاهرة</option>
-              <option value="	القليوبية">القليوبية	</option>
-              <option value="	قنا">	قنا</option>
-              <option value="	كفر الشيخ	">كفر الشيخ		</option>
-              <option value="	مطروح">مطروح	</option>
-              <option value="المنوفية	">المنوفية	</option>
-              <option value="المنيا	">المنيا	</option>
-              <option value="	الوادي الجديد">	الوادي الجديد</option>
+            <select class="form-select" id="floatingSelect" formControlName="governorateId" (change)="optionGovernorates($event)" aria-label="Floating label select example">
+              <option selected disabled hidden>إختار المحافظة   </option>
 
+              <option *ngFor="let gov of governorates" [value]="gov.id">{{ gov.nameAr }}</option>
             </select>
                         <label for="floatingInput" class="fw-bold">    المحافظة
             </label>
+          </div>
+          <div class="text-danger" *ngIf="shippingDetails.get('governorateId')?.invalid && shippingDetails.get('governorateId')?.touched">
+            <div *ngIf="shippingDetails.get('governorateId')?.getError('required')">  برجاء اختار المحافظة </div>
           </div>
           <div class="form-floating mb-3">
             <textarea class="form-control"  placeholder="" formControlName="address" id="floatingTextarea2" style="height: 100px"></textarea>
@@ -83,13 +91,14 @@
             </label>
           </div>
           <div class="form-floating mb-3">
-            <textarea class="form-control" placeholder="" formControlName="comments" id="floatingTextarea2" style="height: 100px"></textarea>
+            <textarea class="form-control" placeholder="" formControlName="notes" id="floatingTextarea2" style="height: 100px"></textarea>
             <label for="floatingTextarea2"> ملاحظات
             </label>
           </div>
-          <button class="w-100 btn btn-lg fw-bold btn-warning bg-gradient rounded-pill" [disabled]="shippingDetails.invalid">اضغط هنا للشراء</button>
+          <button class="w-100 btn btn-lg fw-bold btn-warning bg-gradient rounded-pill" >اضغط هنا للشراء</button>
         </form>
       </div>
     </div>
   </div>
 </section>
+<p-toast ></p-toast>
