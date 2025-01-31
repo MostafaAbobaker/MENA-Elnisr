@@ -1,140 +1,193 @@
 <section class="add-products-page py-5">
   <div class="container">
     <div class="title d-flex justify-content-between pb-2 border-bottom mb-4">
-      <h2 class="fw-bold  mb-0">إضافة منتج</h2>
-      <button class="btn btn-outline-warning px-4 text-dark ms-auto" (click)="addProduct()">
+      <h2 class="fw-bold mb-0">إضافة منتج</h2>
+      <button
+        class="btn btn-outline-warning px-4 text-dark ms-auto"
+        (click)="addProduct()"
+      >
         <span>حفظ</span>
       </button>
     </div>
-    </div>
-      <form class="form " (ngSubmit)="addProduct()" [formGroup]="formProduct">
-        <div class="container add-item  mb-3 ">
-          <div class="row g-3">
-            <div class="col-lg-6">
-              <div class="">
-                <label for="nameAr" class="form-label">الاسم العربى</label>
-                <input type="text" class="form-control" formControlName="nameAr" id="nameAr" placeholder="الاسم العربى">
-               <!--  <div class="text-danger" *ngIf="formProduct.get('nameAr')?.invalid && formProduct.get('nameAr')?.touched">
+  </div>
+  <form class="form" (ngSubmit)="addProduct()" [formGroup]="formProduct">
+    <div class="container add-item mb-3">
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="">
+            <label for="nameAr" class="form-label">الاسم العربى</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="nameAr"
+              id="nameAr"
+              placeholder="الاسم العربى"
+            />
+            <!--  <div class="text-danger" *ngIf="formProduct.get('nameAr')?.invalid && formProduct.get('nameAr')?.touched">
                   <div *ngIf="formProduct.get('nameAr')?.getError('required')">هذا الحق اجبارى</div>
                   <div *ngIf="formProduct.get('nameAr')?.getError('pattern')"> من فضلك التزم كتابه حروف عربية</div>
                 </div> -->
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="">
-                <label for="nameEn" class="form-label">الاسم الانجليزى</label>
-                <input type="text" class="form-control" id="nameEn" formControlName="nameEn" placeholder="الاسم الانجليزى">
-               <!--  <div class="text-danger" *ngIf="formProduct.get('nameEn')?.invalid && formProduct.get('nameEn')?.touched">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="">
+            <label for="nameEn" class="form-label">الاسم الانجليزى</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nameEn"
+              formControlName="nameEn"
+              placeholder="الاسم الانجليزى"
+            />
+            <!--  <div class="text-danger" *ngIf="formProduct.get('nameEn')?.invalid && formProduct.get('nameEn')?.touched">
                   <div *ngIf="formProduct.get('nameEn')?.getError('required')">هذا الحق اجبارى</div>
                   <div *ngIf="formProduct.get('nameEn')?.getError('pattern')"> من فضلك التزم كتابه حروف الانجليزى</div>
                 </div> -->
-              </div>
-
-            </div>
-            <div class="col-lg-6">
-              <div class="">
-                <label for="price" class="form-label">السعر الحالى</label>
-                <input type="number" class="form-control" id="price" formControlName="price" placeholder="السعر">
-                <!-- <div class="text-danger" *ngIf="formProduct.get('price')?.invalid && formProduct.get('price')?.touched">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="">
+            <label for="price" class="form-label">السعر الحالى</label>
+            <input
+              type="number"
+              class="form-control"
+              id="price"
+              formControlName="price"
+              placeholder="السعر"
+            />
+            <!-- <div class="text-danger" *ngIf="formProduct.get('price')?.invalid && formProduct.get('price')?.touched">
                   <div *ngIf="formProduct.get('price')?.getError('required')">هذا الحق اجبارى</div>
                   <div *ngIf="formProduct.get('price')?.getError('pattern')"> من فضلك التزم كتابه ارقام</div>
                 </div> -->
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="">
-                <label for="oldPrice" class="form-label">السعر القديم</label>
-                <input type="number" class="form-control" id="oldPrice" formControlName="oldPrice" placeholder="السعر">
-                <!-- <div class="text-danger" *ngIf="formProduct.get('oldPrice')?.invalid && formProduct.get('oldPrice')?.touched">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="">
+            <label for="oldPrice" class="form-label">السعر القديم</label>
+            <input
+              type="number"
+              class="form-control"
+              id="oldPrice"
+              formControlName="oldPrice"
+              placeholder="السعر"
+            />
+            <!-- <div class="text-danger" *ngIf="formProduct.get('oldPrice')?.invalid && formProduct.get('oldPrice')?.touched">
                   <div *ngIf="formProduct.get('oldPrice')?.getError('required')">هذا الحق اجبارى</div>
                   <div *ngIf="formProduct.get('oldPrice')?.getError('pattern')"> من فضلك التزم كتابه ارقام</div>
                 </div> -->
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="">
-                <label for="category" class="form-label">الفئة</label>
-                <select class="form-select" id="category" formControlName="category">
-                  <option value="" selected>اختر الفئة</option>
-                  <option *ngFor="let category of categories" [value]="category.id">{{category.nameAr}}</option>
-                </select>
-               <!--  <div class="text-danger" *ngIf="formProduct.get('category')?.invalid && formProduct.get('category')?.touched">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="">
+            <label for="category" class="form-label">الفئة</label>
+            <select
+              class="form-select"
+              id="category"
+              formControlName="categoryId"
+            >
+              <option value="" selected>اختر الفئة</option>
+              <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.nameAr }}
+              </option>
+            </select>
+            <!--  <div class="text-danger" *ngIf="formProduct.get('category')?.invalid && formProduct.get('category')?.touched">
                   <div *ngIf="formProduct.get('category')?.getError('required')">هذا الحق اجبارى</div>
                 </div> -->
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="">
-                <label for="brand" class="form-label">المركة</label>
-                <input type="text" class="form-control" formControlName="brand" id="brand" placeholder="الاسم المركة">
-
-                <!-- <div class="text-danger" *ngIf="formProduct.get('brand')?.invalid && formProduct.get('brand')?.touched">
-                  <div *ngIf="formProduct.get('brand')?.getError('required')">هذا الحق اجبارى</div>
-                </div> -->
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="">
-                <label for="descriptionAr" class="form-label">تفصيل المنتج</label>
-                <textarea name="descriptionAr" formControlName="descriptionAr" class="form-control" id="descriptionAr" rows="3"></textarea>
-
-                <!-- <div class="text-danger" *ngIf="formProduct.get('brand')?.invalid && formProduct.get('brand')?.touched">
-                  <div *ngIf="formProduct.get('brand')?.getError('required')">هذا الحق اجبارى</div>
-                </div> -->
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="">
-                <label for="features" class="form-label">مميزات المنتج</label>
-                <textarea name="features" formControlName="features" class="form-control" id="features" rows="3"></textarea>
-
-                <!-- <div class="text-danger" *ngIf="formProduct.get('brand')?.invalid && formProduct.get('brand')?.touched">
-                  <div *ngIf="formProduct.get('brand')?.getError('required')">هذا الحق اجبارى</div>
-                </div> -->
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="">
-                <label for="Fees" class="form-label"> صورة المنتج</label>
-                <input type="file" class="form-control text-start" id="Fees" formControlName="imageForm" (change)="changeFile($event)" >
-                <!-- <div class="text-danger" *ngIf="formProduct.get('imageForm')?.invalid && formProduct.get('imageForm')?.touched">
-                   <div *ngIf="formProduct.get('imageForm')?.getError('required')">هذا الحق اجبارى</div> </div> -->
-              </div>
-            </div>
-            <div class="col-lg-12 ">
-              <div class="d-flex mt-4" style="gap: 10px;">
-                <div class="card-image flex-lg-grow-1 position-relative" *ngFor="let image of filesImage">
-                  <img [src]="'../../../../assets/images/'+ image" alt="" class=" rounded-3 object-fit-contain w-100 h-100" >
-                  <a class="close-image position-absolute top-0 end-0 m-2 text-danger" (click)="removeImage(image)">
-                    <i class="fa-solid fa-trash-can"></i>
-                    </a>
-                </div>
-
-              </div>
-
-            </div>
-            <!-- <div class="col-lg-12">
-              <div class="">
-                <label for="Fees" class="form-label"> صورة تقييمات المنتج</label>
-                <input type="file" class="form-control text-start" id="Fees" formControlName="imageForm" (change)="changeFile($event)" >
-                <div class="text-danger" *ngIf="formProduct.get('imageForm')?.invalid && formProduct.get('imageForm')?.touched">
-                   <div *ngIf="formProduct.get('imageForm')?.getError('required')">هذا الحق اجبارى</div> </div>
-              </div>
-            </div>
-            <div class="col-lg-12 ">
-              <div class="d-flex mt-4" style="gap: 10px;">
-                <div class="card-image flex-lg-grow-1 position-relative" *ngFor="let image of testimonialImage">
-                  <img [src]="'../../../../assets/images/testimonial/'+ image" alt="" class=" rounded-3 object-fit-contain w-100 h-100" >
-                  <a class="close-image position-absolute top-0 end-0 m-2 text-danger" (click)="removeImage(image)">
-                    <i class="fa-solid fa-trash-can"></i>
-                    </a>
-                </div>
-
-              </div>
-
-            </div> -->
           </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="w-100 mb-2">&nbsp;</div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox1"
+              value="option1"
+              formControlName="isOffer"
+            />
+            <label class="form-check-label" for="inlineCheckbox1">العروض</label>
           </div>
-      </form>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox2"
+              value="option2"
+              formControlName="showHome"
+            />
+            <label class="form-check-label" for="inlineCheckbox2"
+              >عرض فى الصفحة الرئيسية
+            </label>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="">
+            <label for="descriptionAr" class="form-label">تفصيل المنتج</label>
+            <textarea
+              name="descriptionAr"
+              formControlName="descAr"
+              class="form-control"
+              id="descriptionAr"
+              rows="3"
+            ></textarea>
 
+            <!-- <div class="text-danger" *ngIf="formProduct.get('brand')?.invalid && formProduct.get('brand')?.touched">
+                  <div *ngIf="formProduct.get('brand')?.getError('required')">هذا الحق اجبارى</div>
+                </div> -->
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="">
+            <label for="features" class="form-label">مميزات المنتج</label>
+            <textarea
+              name="features"
+              formControlName="detailAr"
+              class="form-control"
+              id="features"
+              rows="3"
+            ></textarea>
+
+            <!-- <div class="text-danger" *ngIf="formProduct.get('brand')?.invalid && formProduct.get('brand')?.touched">
+                  <div *ngIf="formProduct.get('brand')?.getError('required')">هذا الحق اجبارى</div>
+                </div> -->
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="">
+            <label for="Fees" class="form-label"> صورة المنتج</label>
+            <input
+              type="file"
+              class="form-control text-start"
+              id="Fees"
+              formControlName="files"
+              (change)="changeFile($event)"
+              multiple
+
+            />
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="d-flex mt-4" style="gap: 10px">
+            <div
+              class="card-image flex-lg-grow-1 position-relative"
+              *ngFor="let image of filesImage"
+            >
+              <img
+                [src]="image.url"
+                alt=""
+                class="rounded-3 object-fit-contain w-100 h-100"
+              />
+              <a
+                class="close-image position-absolute top-0 end-0 m-2 text-danger"
+                (click)="removeImage(image)"
+              >
+                <i class="fa-solid fa-trash-can"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
 </section>
