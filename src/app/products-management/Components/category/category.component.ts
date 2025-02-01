@@ -29,7 +29,8 @@ export class CategoryComponent implements OnInit {
   constructor(
     private _categoryService: CategoryService,
     private fb: FormBuilder
-  ) {
+  ) 
+  {
     this.formCategory = this.fb.group({
       id: new FormControl(null),
       nameAr: new FormControl(null, [Validators.required, Validators.pattern(/^[\u0600-\u06FF\s]+$/)]),
@@ -60,9 +61,8 @@ export class CategoryComponent implements OnInit {
   }
 
   addCategory(): void {
-    console.log('imageP', this.imageP);
-    this.formCategory.value.file = this.imageP;
-    console.log('formCategory', this.formCategory.value);
+     this.formCategory.value.file = this.imageP;
+ 
 
     let nameEn: string = this.formCategory.value.nameEn.toLocaleLowerCase().trim()
     let catListNameEn = this.getCategory.some(gov => gov.nameEn.toLocaleLowerCase() === nameEn.toLocaleLowerCase())

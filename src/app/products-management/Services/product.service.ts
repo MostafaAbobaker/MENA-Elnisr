@@ -14,8 +14,16 @@ export class ProductService {
     return this._http.get('http://elnisr.webxy.net/api/Product/GetAll');
   }
 
-  addProduct(product: IProduct) :Observable<any>{
-    return this._http.post('http://elnisr.webxy.net/api/Product/Add', product);
-  }
+  addProduct(product: any) :Observable<any>{
 
+    console.log(product);
+
+    // Append the id
+
+ 
+    return this._http.post('https://localhost:7156/api/Product/AddProduct', product);
+
+    
+  }
+   
 }
